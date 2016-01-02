@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{ product.brand_name }}{% endblock %}
+
+{% block body_block %}<!-- body Block starts here -->
+<div>
+    <ol class="breadcrumb page-breadcrumbs pull-left">
+            <li><a href="index.html">Home</a>
+        </li>
+        <li>
+            <a href="#">Categories</a>
+        </li>
+
+    </ol>
+
+</div>
+<br><br><br>
+<div class="panel panel-purple">
+    <div class="panel-heading">Main Brands</div>
+    <a class="panel-body">
+
+
+    {% for brand in brands %}
+    {% if brand %}
+
+
+            <a href="{% url 'product:brand_page' brand.slug %}">
+        <div class="panel">
+            <div class="panel-body">
+                <h3 style="margin:0 auto; valign:middle;"> {{ brand.brand_name }}</h3>
+                    <img style="margin:0 auto; valign:middle;" src="{{MEDIA_URL}}{{brand.brand_icon}}" class="img-rounded center-block" alt="{{ brand.brand_name}}"/>
+            </div>
+        </div>
+        </a>
+    {% else %}
+        <strong>There are no categories present.</strong>
+    {% endif %}
+    {% endfor %}
+
+</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

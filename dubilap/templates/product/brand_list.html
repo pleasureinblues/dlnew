@@ -1,0 +1,62 @@
+<nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+data-position="right" class="navbar-default navbar-static-side">
+<div class="sidebar-collapse menu-scroll">
+
+    {% if brand %}
+
+    <div id="side-menu" class="nav">
+
+
+        <div class="sidebar-collapse menu-scroll">
+            <ul id="side-menu" class="nav">
+                <div class="clearfix"></div>
+
+
+
+<li>
+    <a href="{% url 'home' %}"><i class="fa fa-home fa-2x">&nbsp;&nbsp;</i>Home</a>
+</li>
+
+                <li>
+    <a href="{% url 'about' %}"><i class="fa fa-user fa-x2">&nbsp;&nbsp;</i>About Us</a>
+</li>
+
+                <li>
+    <a href="{% url 'contact' %}"><i class="fa fa-phone fa-x2">&nbsp;&nbsp;</i>Contact Us</a>
+</li>
+               <div style="background-color:#488c6c; color:#fff; padding-left:5px; margin:0;"><p><span class="glyphicons glyphicons-search"><i>Search by Brands</i></span></p></div>
+                {% for b in brand %}
+
+                {% if b == act_brand %}
+
+                <li  class="active" >
+                    {% else  %}
+                    <li>
+                        {% endif %}
+                        <a href="{% url 'product:brand_page'  b.slug %}">
+                            <img src="/media/{{b.brand_icon}}" class="img-rounded" alt="{{ b.brand_name}}" width="36" height="36"/>
+                            <span class="menu-title">{{b.brand_name}} </span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                  <div style="background-color:#488c6c; color:#fff; padding-left:5px; margin:0;"><p><i>Search by Price</i></p></div>
+                <li><a href="{% url 'product:price' 'high-low' %}"> <span><i class="fa fa-angle-down fa-x2">&nbsp;&nbsp;</i> Price (Highest ~ Lowest)</span></a></li>
+                <li><a href="{% url 'product:price' 'low-high' %}"> <span><i class="fa fa-angle-up fa-x2">&nbsp;&nbsp;</i> Price (Lowest ~ Highest)</span></a></li>
+
+
+                    {% else %}
+                    <li>
+                        <strong >There are no category present.</strong>
+                    </li>
+
+
+                </ul>
+                {% endif %}
+
+
+
+            </div>
+        </nav>
+    <!--
+
+-->

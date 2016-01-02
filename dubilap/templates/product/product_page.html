@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}{{ product.product_name }}{% endblock %}
+
+{% block body_block %}<!-- body Block starts here -->
+<div>
+    <ol class="breadcrumb page-breadcrumbs pull-left">
+            <li><a href="index.html">Home</a>
+        </li>
+        <li>
+            <a href="index.html">{{ product.category }}</a>
+        </li>
+        <li>
+            <a href="#">{{ product.product_name }}</a>
+        </li>
+    </ol>
+
+</div>
+<br><br><br>
+<div class="panel panel-purple">
+    <div class="panel-heading">{{ product.product_name }}
+
+</div>
+    <div class="panel-body">
+<br>
+<img src="{{ MEDIA_URL }}{{product.product_image}}" class="img-rounded center-block" alt="{{ product.product_name}}" width="50%" height="50%" />
+<br>
+                            <div style="color:#488c6c;" class="panel-heading"><h3><strong>Specifications</strong></h3></div>
+<div class="panel-body">
+
+<table class="table table-hover">
+<tr><td>Brand Name</td><td><strong>{{product.brand }}</strong></td></tr>
+<tr><td>Model</td><td><strong>{{product.model_name }}</strong></td></tr>
+<tr><td>Generation</td><td><strong>{{product.generation }}</strong></td></tr>
+<tr><td>Processor</td><td><strong>{{product.processor }}</strong></td></tr>
+<tr><td>RAM</td><td><strong>{{product.ram }}</strong></td></tr>
+<tr><td>Hard Drive (GB)</td><td><strong>{{product.hdd |floatformat:"0"}}</strong></td></tr>
+<tr><td>Optical Drive</td><td><strong>{{product.optical_drive }}</strong></td></tr>
+<tr><td>Display</td><td><strong>{{product.display }}</strong></td></tr>
+<tr><td>Card Reader</td><td><strong>{{product.card_reader }}</strong></td></tr>
+<tr><td>Bluetooth</td><td><strong>{{product.blue_tooth }}</strong></td></tr>
+<tr><td>Web Cam</td><td><strong>{{product.web_cam }}</strong></td></tr>
+<tr><td>Warranty</td><td><strong>{{product.warranty }}</strong></td></tr>
+<tr><td>Price (AED)</td><td><strong>{{product.price |floatformat:"0" | intcomma }}</strong></td></tr>
+<tr><td>Condition</td><td><strong>{{product.condition }}</strong></td></tr>
+
+</table>
+
+</div>
+<a href="#"><button type="button" class="btn btn-danger pull-right">Buy This Product</button></a>
+
+</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

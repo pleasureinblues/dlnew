@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Index{% endblock %}
+
+{% block body_block %}
+<!-- body Block starts here -->
+
+
+
+<!-- Breadcrumb -->
+<div>
+    <ol class="breadcrumb page-breadcrumbs pull-left">
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+    </ol>
+</div>
+<br><br><br>
+
+
+
+
+    {% if products %}
+    {% for p in products %}
+
+        <div class="row panel panel-purple">
+
+            <div class="panel-heading">{{ p.product_name }}</div>
+                <div class=" panel-body col-xs-8 col-md-6">
+                    <table class="table table-hover">
+                        <tr>
+                            <td width="165px">Product Name</td>
+                            <td>
+                                <strong>{{p.product_name }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Brand Name</td>
+                            <td>
+                                <strong>{{p.brand }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>
+                                <strong>{{p.model_name }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Generation</td>
+                            <td>
+                                <strong>{{p.generation }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Processor</td>
+                            <td>
+                                <strong>{{p.processor }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td>
+                                <strong>{{p.ram }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Display</td>
+                            <td>
+                                <strong>{{p.display }}</strong>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            <div class="col-xs-8 col-md-6">
+                <img src="{{ MEDIA_URL }}{{p.product_image}}" class="img-rounded center-block"
+                 alt="{{ p.product_name}}" width="60%" height="60%"/>
+                <p class="text-center">{{p.product_name }}</p>
+                <hr>
+            </div>
+            <div style="padding-bottom:10px;" class ="col-md-12">
+         <a href="/product/product_page/{{p.id}}">
+                    <button type="button" class="btn btn-danger pull-right">Check out Details</button>
+             </a>
+
+            </div>
+                </div>
+
+
+    {% endfor %}
+
+
+{% else %}
+    <strong>No such category.</strong>
+{% endif %}
+
+
+{% endblock %}

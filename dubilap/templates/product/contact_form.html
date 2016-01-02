@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% block title %}Contact Us{% endblock %}
+
+<div class="panel panel-brown">
+  <div class="panel-heading">Contact Form </div>
+        <form class="post-form" id="contact_form" method="post" action=""/>
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+            {{ field.help_text }}
+
+           <div class="form-group">{{ field }}</div>
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Submit the Message"/>
+        </form>
+    </div>
+
+
+
+
+<hr>
+
+<div class="panel panel-brown">
+  <div class="panel-heading">
+    Contacts Form
+  </div>
+  <div class="panel-body pan">
+    <form action="#">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+
+      <div class="form-body pal">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="{{ field.help_text }}" class="control-label">
+                {{ field.help_text }}
+              </label>
+              <div class="input-icon right">
+                {{ field }}
+                <input id="inputName" type="text" placeholder="" class="form-control">
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="form-actions text-right pal">
+        <button type="submit" class="btn btn-primary">
+          Send message
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
