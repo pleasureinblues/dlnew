@@ -1,4 +1,4 @@
-gitfrom django.core.mail import send_mail
+from django.core.mail import send_mail
 from django.shortcuts import render
 
 from product.forms import Customer_ps_contactForm
