@@ -145,3 +145,8 @@ def ps_contact(request):
 
     return render(request, 'product/contact_form.html', {'form':form})
 
+
+def handler404(request):
+    response = render('404.html', {'context_instace':request})
+    response.status_code = 404
+    return response
