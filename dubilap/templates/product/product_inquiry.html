@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block body_block %}
+{% block title %}Contact Us{% endblock %}
+
+<div class="panel panel-brown">
+  <div class="panel-heading">Contact Form </div>
+        <form class="post-form" id="contact_form" method="post" action=""/>
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+
+               {{ field.errors }}
+               {{ field.help_text }}
+
+            <div class="container row">
+                  {{ field }}
+                </div>
+
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Submit the Message"/>
+        </form>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+

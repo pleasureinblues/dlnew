@@ -8,6 +8,10 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 
+ModelChoiceField = ()
+
+
+
 ### STORAGE ###
 
 pi = FileSystemStorage(location='/media/product_images')
@@ -114,13 +118,14 @@ class UserProfile(models.Model):
 
 
 class Customer_ps_contact(models.Model):
-    name = models.CharField(max_length=128, help_text="Name")
-    email = models.EmailField(max_length=75, help_text="Email")
-    subject = models.CharField(max_length=128,help_text="Subject" )
-    product = models.ForeignKey(ProductProfile, help_text="Product")
-    message = models.TextField(help_text="Message")
+    name = models.CharField(max_length=128)
+    email = models.EmailField(max_length=75)
+    subject = models.CharField(max_length=128 )
+    product = models.ForeignKey(ProductProfile)
+    message = models.TextField()
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=15, help_text="Phone Number") # validators should be a list
+    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=15) # validators should be a list
 
     def __unicode__(self):
         return self.name
+

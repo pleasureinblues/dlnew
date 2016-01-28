@@ -43,6 +43,7 @@ TEMPLATE_DIRS = [
 ]
 
 
+
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
@@ -58,7 +59,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'product',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,3 +109,6 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

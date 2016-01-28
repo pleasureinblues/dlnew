@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block body_block %}
+{% block title %}Product Inquiry{% endblock %}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="font-weight:bold">Enquiry regarding '{{product.product_name}}'</h2>
+        <hr>
+        <form id="contact_form" method="post" action=""/>
+
+            {% csrf_token %}
+            {{ form | crispy }}
+
+            <input class="btn btn-primary pull-right " type="submit" name="submit" value="Submit the Message" />
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+

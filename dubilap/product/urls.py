@@ -9,6 +9,6 @@ urlpatterns = patterns('',
        url(r'^brands/$', views.brands, name='brands'),
        url(r'^brand/(?P<brand_name_slug>[-\w]+)/$', views.brand_page, name='brand_page'),
        url(r'^price/(?P<price_pattern>[-\w]+)/$', views.price, name='price'),
-       url(r'^customer_contact/$', views.ps_contact, name='price'),
+       url(r'^inquiry/(?P<product_id>\d+)/$', views.product_inquiry, name='price'),
 
        )

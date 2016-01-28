@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from product.forms import Customer_ps_contactForm
 from product.models import ProductProfile, Category, Brand
 
@@ -118,8 +118,8 @@ def mail_customer_enquriy(form_data_dict):
 def thank_u_customer(form_data_dict):
     name=form_data_dict['name']
     email=form_data_dict['email']
-    subject= "Dubi Lap | Thank you for Enquiry"
-    formatted_message = "Dear "+name+",\n\nThank you for your enquiry.\n\nOne of our representative will contact you soon.\n\nWe hope to have long-term relationship with you.\n\n\nRegards,\n\nDubiLap\nwww.dubilap.com"
+    subject= "Dubilap | Thank you for Enquiry"
+    formatted_message = "Dear "+name+",\n\nThank you for your enquiry.\n\nOne of our representative will contact you soon.\n\nWe hope to have long-term relationship with you.\n\n\nRegards,\n\nDubilap\nwww.dubilap.com"
 
     send_mail(subject,
               formatted_message,
@@ -127,23 +127,32 @@ def thank_u_customer(form_data_dict):
               [email],
               fail_silently=False)
 
-def ps_contact(request):
+def product_inquiry(request, product_id):
+    product = ProductProfile.objects.get(pk=product_id)
     if request.method == 'POST':
-        form = Customer_ps_contactForm(request.POST)
+        #form = Customer_ps_contactForm(request.POST, initial = {'product': product})
+
+        form = Customer_ps_contactForm(initial = {'product': product.id})
+
+        #form = Customer_ps_contactForm(request.POST)
 
         if form.is_valid():
             form_data_dict = form.cleaned_data
             mail_customer_enquriy(form_data_dict)
             thank_u_customer(form_data_dict)
 
-            form.save(commit=True)
+            form = form.save(commit=False)
+            form.product = product
+            form.save()
             return home(request)
         else:
             print (form.errors)
     else:
         form = Customer_ps_contactForm()
 
-    return render(request, 'product/contact_form.html', {'form':form})
+    context_dict = {'form':form, 'product': product}
+
+    return render(request, 'product/product_inquiry2.html',context_dict)
 
 
 def handler404(request):
