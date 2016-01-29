@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
     url(r'^$', views.home, name='home'),
     url(r'^about/$', views.about, name='about'),
-    url(r'^contact/$', views.contact, name='contact'),
+    url(r'^contact/$', views.contact_us, name='contact'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^product/', include('product.urls', namespace='product')),
     url(r'^accounts/register/$', MyRegistrationView.as_view(),

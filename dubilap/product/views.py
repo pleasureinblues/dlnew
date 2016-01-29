@@ -31,6 +31,49 @@ def contact (request):
     context_dict['abc'] = 'We are here'
     return render(request, 'product/contact.html', context_dict)
 
+#####################
+# CUSTOMER CONTACT
+#####################
+
+def mail_customer_contact(name, email, subject,message,send_a_copy):
+    subject = "Customer Contact @ Dubilap: " + subject
+    message = "Dear Admin"+"\n\n\n"+"Following message has been received from '" + name + "' having email address: "+email+":\n\n"+message
+    if send_a_copy:
+        send_mail(subject,
+                  message,
+                  'enquriy.dubailap@gmail.com',
+                  ['pleasureinblues@gmail.com', email],
+                  fail_silently=False)
+    else:
+        send_mail(subject,
+          message,
+          'enquriy.dubailap@gmail.com',
+          ['pleasureinblues@gmail.com'],
+          fail_silently=False)
+
+
+def contact_us (request):
+    context_dict = {}
+    context_dict['abc'] = 'We are here'
+    if request.POST:  # If this is true, the view received POST
+        form_data_dict = request.POST
+        name = form_data_dict['name']
+        email = form_data_dict['email']
+        subject = form_data_dict['subject']
+        message = form_data_dict['message']
+        send_a_copy = form_data_dict.get('send_a_copy', False)
+
+        print (name)
+        print (email)
+        print (subject)
+        print (message)
+        print (send_a_copy)
+        mail_customer_contact(name,email,subject,message,send_a_copy)
+    return render(request, 'product/contact.html', context_dict)
+
+###################################
+
+
 
 
 def product_page(request, product_id):
